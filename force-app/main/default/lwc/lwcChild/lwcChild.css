@@ -1,0 +1,11 @@
+.myColor {
+    background: turquoise;
+    color: orangered;
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    border:darkblue 3px solid;
+}

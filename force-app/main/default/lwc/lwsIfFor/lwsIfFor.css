@@ -1,0 +1,24 @@
+.myColor {
+    background: white;
+    color: orangered;
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    border:orangered 3px solid;
+    margin:12px;
+}
+
+.myColor2 {
+    background: white;
+    color: darkslateblue;
+    font-size: larger;
+    text-align: left;
+    font-weight: bold;
+    padding: 12px;
+    padding-left: 20px;
+    border-radius: 10px;
+    border:darkslateblue 3px solid;
+    margin:12px;
+}

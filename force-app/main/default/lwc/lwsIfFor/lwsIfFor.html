@@ -1,0 +1,39 @@
+<template>
+    <div class="myColor">
+        <lightning-input 
+        type="checkbox" 
+         label="Check Please" 
+        value={showTrueSection}
+        onchange={setSectionStatus}
+        ></lightning-input>
+        <template if:true={showTrueSection}>
+            This will be shown on TRUE value
+        </template>
+        <template if:false={showTrueSection}>
+            This will be shown on FALSE value
+        </template>
+    </div>
+        Toggle ends 
+        <br/>
+        For-each starts
+    <div class="myColor2">
+        <template for:each={accounts} for:item="acc" for:index="index">
+            <p key={acc.AccountId}>At index={index}, Name= {acc.Name} and Location={acc.Location}</p>
+        </template>
+    </div>
+    For each ends 
+    <br/>
+    Iterator starts
+    <div class="myColor">
+        <template iterator:acc={accounts}>
+            <template if:true={acc.first}>
+                First record=>
+            </template>
+            <template if:true={acc.last}>
+                Last record=>
+            </template>
+            At the index={acc.index}, Name= {acc.value.Name}, Location={acc.value.Location}
+        </template>
+    </div>
+
+</template>

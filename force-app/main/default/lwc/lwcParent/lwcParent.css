@@ -1,0 +1,10 @@
+.myColor {
+    background: white;
+    color: orangered;
+    font-size: larger;
+    text-align: center;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    border:orangered 3px solid;
+}

@@ -1,0 +1,19 @@
+<template>
+    <div class="myColor">
+        {greetings} <br/>
+        The contact first name is {contact.FirstName}
+        <br/>
+        
+        <div class="slds-var-p-around_medium">
+            <lightning-input 
+            type="text" 
+            label="Enter some text" 
+            value={contact.FisrtName}
+            onchange={handleInputChange}
+            >
+            </lightning-input>
+        </div>
+        <br/>
+
+    </div>
+</template>

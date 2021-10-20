@@ -1,0 +1,111 @@
+----------html
+<template>
+    
+    <lightning-card title="ApexWireMethod">
+        <lightning-input 
+            type="search"
+            label="Enter keyword"
+            value={searchTerm}
+            onchange={handleKeywordChange}
+        ></lightning-input>
+        <!-- <lightning-button
+            label="Search"
+            variant="brand"
+            onclick={handleAccountSearch}
+            class="slds-var-m-left_x-small"
+        ></lightning-button> -->
+        <template if:true={accounts}> 
+            <template for:each={accounts} for:item="account">
+                <p key={account.Id}>{account.Name}</p>
+            </template>
+        </template>
+        <template if:true={error}>
+            <p>Status: {error.status}</p>
+            <p>Message: {errorMessage}</p>
+        </template>
+    </lightning-card>
+</template>
+
+
+
+-------js
+import { LightningElement, track, wire } from 'lwc';
+import getAccounts from '@salesforce/apex/AccountController.getAccounts';
+import getAccountsByKeyword from '@salesforce/apex/AccountController.getAccountsByKeyword';
+
+export default class LwcWireMethod extends LightningElement {
+    @track
+    accounts;
+
+    @track
+    error = {};
+
+    @track
+    errorMessage = '';
+    
+    @track
+    searchTerm = '';
+
+    @track
+    enteredKeyword = '';
+
+    @wire(getAccounts)
+    accountsFetch({ error, data }) {
+        if (data) {
+            this.accounts = data;
+            this.error = undefined;
+        } else if (error) {
+            console.log(error);
+            this.accounts = undefined;
+            this.error = error;
+            this.errorMessage = error.body.message;
+        }
+    }
+
+    handleKeywordChange(event) {
+        this.searchTerm = event.detail.value; //
+    }
+
+    // handleAccountSearch(event) {
+    //     this.searchTerm = this.enteredKeyword;
+    // }
+    
+    @wire(getAccountsByKeyword, { searchTerm: '$searchTerm' })
+    accountsFetchKeyword({ error, data }) {
+        if (data) {
+            this.accounts = data;
+            this.error = undefined;
+        } else if (error) {
+            this.accounts = undefined;
+            this.error = error;
+            this.errorMessage = error.body.message;
+        }
+    }
+}
+
+---------class
+public inherited sharing class AccountController {
+    
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccounts(){
+        List<Account> accounts = [
+            SELECT Id, Name, Website, Type
+            FROM Account
+            ORDER BY Name ASC
+        ];
+        //Integer a = 10/0;
+        return accounts;
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Account> getAccountsByKeyword(String searchTerm){
+        String keyword = '%'+searchTerm+'%'; 
+        List<Account> accounts = [
+            SELECT Id, Name, Website, Type
+            FROM Account 
+            WHERE Name LIKE :keyword
+        ];
+        return accounts;
+    }
+}
+
