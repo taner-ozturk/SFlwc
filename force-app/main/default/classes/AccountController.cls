@@ -11,14 +11,14 @@ public inherited sharing class AccountController {
         return accounts;
     }
 
-    @AuraEnabled(cacheable=true)
-    public static List<Account> getAccountsByKeyword(String searchTerm){
-        String keyword = '%'+searchTerm+'%'; 
-        List<Account> accounts = [
-            SELECT Id, Name, Website, Type
-            FROM Account 
-            WHERE Name LIKE :keyword
-        ];
-        return accounts;
-    }
+    // @AuraEnabled(cacheable=true)
+    // public static List<Account> getAccountsByKeyword(String searchTerm){
+    //     String keyword = '%'+searchTerm+'%'; 
+    //     List<Account> accounts = [
+    //         SELECT Id, Name, Website, Type
+    //         FROM Account 
+    //         WHERE Name LIKE :keyword
+    //     ];
+    //     return accounts;
+    // }
 }

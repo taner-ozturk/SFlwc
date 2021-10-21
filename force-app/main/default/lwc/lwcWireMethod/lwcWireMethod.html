@@ -15,11 +15,11 @@
             ></lightning-button>
             <template if:true={accounts}> 
                 <template for:each={accounts} for:item="account">
-                    <p key={account.Id}>{account.Name}</p>
+                    <p key={account.Id}>Account Id = {account.Id} Account name = {account.Name} Website= {account.website} Type={account.Type}</p>
                 </template>
             </template>
             <template if:true={error}>
-                <p>Status: {error.status}</p>
+                <p>Status: {error}</p>
                 <p>Message: {errorMessage}</p>
             </template>
         </lightning-card>
