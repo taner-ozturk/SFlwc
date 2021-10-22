@@ -16,7 +16,7 @@ export default class CreateContact extends LightningElement {
         this.lastName = event.detail.value;
     }
 
-    upsertContact(event) {
+    upsertNewContact(event) {
         upsertContactApex({
             firstName: this.firstName,
             lastName: this.lastName,
@@ -28,6 +28,7 @@ export default class CreateContact extends LightningElement {
             })
             .catch(error => {
                 console.log('error: ', error);
+                // alert(error);
             });
     }
 }

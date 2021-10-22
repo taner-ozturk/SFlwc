@@ -18,8 +18,8 @@
                     <p key={account.Id}>Account Id = {account.Id} Account name = {account.Name} Website= {account.website} Type={account.Type}</p>
                 </template>
             </template>
-            <template if:true={error}>
-                <p>Status: {error}</p>
+            <template if:true={errorStatus}>
+                <p>Status: {errorStatus}</p>
                 <p>Message: {errorMessage}</p>
             </template>
         </lightning-card>

@@ -7,7 +7,7 @@ export default class LwcWireMethod extends LightningElement {
     accounts;
 
     @track
-    error= {};
+    errorStatus= {}; //500
 
     @track
     errorMessage = '';
@@ -27,7 +27,7 @@ export default class LwcWireMethod extends LightningElement {
         } else if (error) {
             console.log("getAccounts error=>", error);
             this.accounts = undefined;
-            this.error = error.status;
+            this.errorStatus = error.status;
             this.errorMessage = error.body.message;
             //console.log("getAccounts errorMessage=>", errorMessage);
         }
