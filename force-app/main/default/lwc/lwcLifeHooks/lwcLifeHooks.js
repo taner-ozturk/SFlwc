@@ -5,13 +5,15 @@
 
 
 
-import { api, LightningElement } from 'lwc';
+import { api, LightningElement, wire } from 'lwc';
 
 export default class LwcLifeHooks extends LightningElement {
     @api
     publicProperty = 'This is original value (lwc-life-hooks)';
 
     privateProperty = 'This is private original';
+
+    fromHooks = 'This is called from hooks component';
 
     constructor() {
         super();
@@ -28,6 +30,13 @@ export default class LwcLifeHooks extends LightningElement {
         console.log('28 public property: ', this.publicProperty);
         this.publicProperty = 'Changed public property in line 29';
         console.log('30 public property: ', this.publicProperty);
-        console.log('31 child component: ', this.querySelector("c-lwc-composition-child"));
+        console.log('33 child component: ', this.template.querySelector('c-lwc-composition-child'));
+    }
+
+    renderedCallback() {
+        this.fromHooks = 'Changed value from hooks';
+        console.log('39 child component: ', this.template.querySelector('c-lwc-composition-child'));
+        let information = this.template.querySelector('c-lwc-composition-child').information;
+        console.log('information: ' + information);
     }
 }
