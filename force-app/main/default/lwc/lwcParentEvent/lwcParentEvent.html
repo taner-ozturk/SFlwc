@@ -1,8 +1,18 @@
 <template>
     <div class="myColor2">
-        This is parent component for catching the events
-        <c-lwc-child-event 
-            oncsvcompleted={handleChildButtonClick}
-        ></c-lwc-child-event>
+            This is parent component for catching the events
+            <br/>
+            Received information:
+            <br/>
+            First name: {firstName}
+            <br/>
+            Last name: {lastName}
+            <br/>
+            Email: {email}
+            <br/>
+            ----------Parent-child boundary--------------------
+            <c-lwc-child-event 
+                onfetchcontact={handleChildButtonClick}
+            ></c-lwc-child-event>
     </div>
 </template>
