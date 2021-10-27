@@ -1,3 +1,18 @@
 <template>
-    {publicProperty}
+    Below is primitive data=> 
+    <template if:true={showPublicProperty}>
+        public property: {publicProperty}
+    </template>
+    <template if:false={showPublicProperty}>
+        No public property
+    </template>
+    <br/>
+    
+    Below is object data=> 
+    <template if:true={showPublicPropertyObject}>
+        public property object: {publicPropertyObject.firstName} {publicPropertyObject.lastName}
+    </template>
+    <template if:false={showPublicPropertyObject}>
+        No public property object
+    </template>
 </template>

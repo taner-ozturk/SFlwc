@@ -4,12 +4,14 @@
     <c-lwc-child-prim-non-prim
         public-property="Hello! Its Tuesday Night"
     ></c-lwc-child-prim-non-prim>
+    <!-- load public-property was success
+    load public-property-object was failure=>no further loading -->
     <br/>
     <c-lwc-child-prim-non-prim
         public-property=true
     ></c-lwc-child-prim-non-prim>
     <br/>
     <c-lwc-child-prim-non-prim
-        public-property={contactRec}
+        public-property-object={contactRec}
     ></c-lwc-child-prim-non-prim>
 </template>

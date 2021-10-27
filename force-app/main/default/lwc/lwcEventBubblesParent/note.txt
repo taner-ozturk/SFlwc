@@ -1,0 +1,47 @@
+---------------------------------
+Bubbles is for going up the hierarchy
+Composed is for crossing the SHADOW DOM boundary
+----------------------------------
+bubbles = true, composed=true
+<parent>
+    Event will reach here
+    <div>
+        Event will reach here
+        <child>
+            Event will reach here
+            <div>
+                Event fired here
+            </div>
+        </child>
+    </div>
+</parent>
+--------------------------------------------------------------------------------
+bubbles = true, composed=false
+<parent>
+    Event will not reach here
+    <div>
+        Event will not reach here
+        -----SHADOW DOM BOUNDARY STARTS----------
+        <child>
+            Event will reach here
+            <div>
+                Event fired here
+            </div>
+        </child>
+        -----SHADOW DOM BOUNDARY END----------
+    </div>
+</parent>
+----------------------------------------------------------------------
+bubbles = false
+<parent>
+    Event will not reach here
+    <div>
+        Event will not reach here
+        <child>
+            Event will not reach here
+            <div>
+                Event fired here
+            </div>
+        </child>
+    </div>
+</parent>
