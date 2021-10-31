@@ -4,7 +4,7 @@
     <apex:includeScript value="/soap/ajax/52.0/apex.js"></apex:includeScript>
     <apex:slds />
     <div>
-        <p>Subcribe to SampleMessageChannel__c</p>
+        <p>VF Subcriber</p>
         <button onclick="subscribeToMessageChannel()">Subscribe</button>
         <div id="subscribeMessage" style="color:red;"></div>
         <p>Unsubcribe to SampleMessageChannel__c</p>

@@ -1,3 +1,7 @@
-<aura:component>
-
-</aura:component>	
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+    <lightning:messageChannel type="SampleMessageChannel__c" aura:id="sampleMessageChannelId" />
+    <lightning:card title="Aura publisher" footer="Aura publisher">
+        <lightning:button label="Publish" onclick="{!c.publishMessage}" />
+    </lightning:card>
+    
+</aura:component>

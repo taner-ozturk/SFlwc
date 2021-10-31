@@ -1,0 +1,17 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="payload" type="String" default="" />
+    <lightning:messageChannel
+        type="SampleMessageChannel__c"
+        aura:id="sampleMessageSubscriberId"
+        onMessage="{!c.handleMessage}"
+        scope="APPLICATION"
+    />
+    <lightning:card
+        title="Aura subscriber"
+        footer="Aura subscriber"
+    >
+        <textarea id="receivedText" rows="7" style="width=100%;" >
+            {!v.payload}
+        </textarea>
+    </lightning:card>
+</aura:component>

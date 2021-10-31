@@ -4,7 +4,7 @@
     <apex:includeScript value="/soap/ajax/52.0/apex.js"></apex:includeScript>
     <apex:slds />
     <div>
-        <p>Publish message from VF</p>
+        <p>VF Publisher</p>
         <br/>
         <button onclick="publishToMessageChannel()">Publish</button>
     </div>
