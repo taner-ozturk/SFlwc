@@ -11,12 +11,13 @@
         <button onclick="unsubscribeToMessageChannel()">Unsubscribe</button>
         <div id="unsubscribeMessage" style="color:red;"></div>
     </div>
-    <textarea id="MCMessageTextArea" rows="10" style="disabled=true;width=100%;"></textarea>
+    <textarea id="MCMessageTextArea" rows="10" style="width=100%;"></textarea>
     <script>
         var SAMPLEMSGCHL = "{!$MessageChannel.SampleMessageChannel__c}";
         var subscribtionToMC;
         function subscribeToMessageChannel() {
             if (!subscribtionToMC) {
+                debugger;
                 subscribtionToMC = sforce.one.subscribe(SAMPLEMSGCHL, onMCPublished);
                 var divAr = document.querySelector("#subscribeMessage");
                 divAr.innerHTML = 'Subscription successfull';
@@ -28,5 +29,18 @@
             var textArea = document.querySelector("#MCMessageTextArea");
             textArea.innerHTML = message ? JSON.stringify(message) : 'No message received';
         }
+        function unsubscribeToMessageChannel() {
+            if (subscribtionToMC) {
+                sforce.one.unsubscribe(subscribtionToMC);
+                subscribtionToMC = null;
+                var divAr = document.querySelector("#subscribeMessage");
+                divAr.innerHTML = '';
+                var divAr = document.querySelector("#unsubscribeMessage");
+                divAr.innerHTML = 'Unsubscription successful';
+                var textArea = document.querySelector("#MCMessageTextArea");
+                textArea.innerHTML = '';
+            }
+        }
+        subscribeToMessageChannel();
     </script>
 </apex:page>
