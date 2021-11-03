@@ -1,3 +1,19 @@
 <template>
-    
+    <lightning-card title="LDS Demo">
+        <lightning-record-view-form 
+            record-id={recordId}
+            object-api-name={objectApiName}
+        >
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Name"></lightning-output-field>
+                    <lightning-output-field field-name="Email"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Company"></lightning-output-field>
+                    <lightning-output-field field-name="LeadSource"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-record-view-form>
+    </lightning-card>
 </template>
