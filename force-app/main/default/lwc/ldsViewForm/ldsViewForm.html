@@ -6,12 +6,12 @@
         >
             <div class="slds-grid">
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-output-field field-name="Name"></lightning-output-field>
-                    <lightning-output-field field-name="Email"></lightning-output-field>
+                    <lightning-output-field field-name={nameField}></lightning-output-field>
+                    <lightning-output-field field-name={emailField}></lightning-output-field>
                 </div>
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-output-field field-name="Company"></lightning-output-field>
-                    <lightning-output-field field-name="LeadSource"></lightning-output-field>
+                    <lightning-output-field field-name={companyField}></lightning-output-field>
+                    <lightning-output-field field-name={sourceField}></lightning-output-field>
                 </div>
             </div>
         </lightning-record-view-form>
