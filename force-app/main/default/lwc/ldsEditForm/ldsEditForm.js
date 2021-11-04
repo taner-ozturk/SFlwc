@@ -16,7 +16,14 @@ export default class LdsEditForm extends LightningElement {
         
         console.log(JSON.stringify(recordDetail));
         
-        recordDetail.LeadSource = 'Other';
-        this.template.querySelector('lightning-record-edit-form').submit(recordDetail);
+        // recordDetail.LeadSource = 'Other';
+        // this.template.querySelector('lightning-record-edit-form').submit(recordDetail);
+    }
+    handleSuccess(event) {
+        const eventData = {
+            success: true
+        };
+        let newCustomEvent = new CustomEvent('recordsave', { detail: eventData });
+        this.dispatchEvent(newCustomEvent);
     }
 }
