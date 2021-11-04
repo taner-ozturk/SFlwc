@@ -5,14 +5,15 @@
                 object-api-name={objectApiName}
                 record-id={recordId}
             >
+            <lightning-messages></lightning-messages>
             <div class="slds-grid">
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input-field field-name="Name"></lightning-input-field>
-                    <lightning-input-field field-name="Email"></lightning-input-field>
+                    <lightning-input-field field-name={nameField}></lightning-input-field>
+                    <lightning-input-field field-name={emailFIeld}></lightning-input-field>
                 </div>
                 <div class="slds-col slds-size_1-of-2">
-                    <lightning-input-field field-name="Company"></lightning-input-field>
-                    <lightning-input-field field-name="LeadSource"></lightning-input-field>
+                    <lightning-input-field field-name={companyField}></lightning-input-field>
+                    <lightning-input-field field-name={sourceField}></lightning-input-field>
                 </div>
             </div>
             <div class="slds-var-m-top_medium">
