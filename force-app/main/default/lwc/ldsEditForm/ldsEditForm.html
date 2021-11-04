@@ -4,12 +4,13 @@
             <lightning-record-edit-form
                 object-api-name={objectApiName}
                 record-id={recordId}
+                onsubmit={handleSubmit}
             >
             <lightning-messages></lightning-messages>
             <div class="slds-grid">
                 <div class="slds-col slds-size_1-of-2">
                     <lightning-input-field field-name={nameField}></lightning-input-field>
-                    <lightning-input-field field-name={emailFIeld}></lightning-input-field>
+                    <lightning-input-field field-name={emailField}></lightning-input-field>
                 </div>
                 <div class="slds-col slds-size_1-of-2">
                     <lightning-input-field field-name={companyField}></lightning-input-field>

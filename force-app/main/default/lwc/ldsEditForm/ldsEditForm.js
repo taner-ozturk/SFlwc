@@ -11,4 +11,12 @@ export default class LdsEditForm extends LightningElement {
     emailField = EMAIL_FIELD;
     sourceField = SOURCE_FIELD;
     companyField = COMPANY_FIELD;
+    handleSubmit(event) {
+        const recordDetail = event.detail.fields;
+        
+        console.log(JSON.stringify(recordDetail));
+        
+        recordDetail.LeadSource = 'Other';
+        this.template.querySelector('lightning-record-edit-form').submit(recordDetail);
+    }
 }
