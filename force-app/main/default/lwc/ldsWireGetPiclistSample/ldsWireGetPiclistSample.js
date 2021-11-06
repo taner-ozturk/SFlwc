@@ -2,13 +2,30 @@ import { LightningElement, track, api, wire } from 'lwc';
 import { getObjectInfo, getObjectInfos, getPicklistValues } from 'lightning/uiObjectInfoApi';
 import STATE_FIELD from '@salesforce/schema/Contact.State__c';
 import CITY_FIELD from '@salesforce/schema/Contact.City__c';
+import getRecordTypes from '@salesforce/apex/LdsWireController.getRecordTypes'
 export default class LdsWireGetPiclistSample extends LightningElement {
     recordTypeValue;
     stateValue;
     cityValue;
     @track cityOptions;
     @track stateOptions;
+    @track recordTypeOptions;
     cityData;
+    // get recordTypeOptions() {
+    //     return [
+    //         { label: 'East', value: '0125j0000016lozAAA' }, //add your own Contact' recordtype Id
+    //         { label: 'West', value: '0125j0000016lp9AAA' }
+    //     ];
+    // }
+    @wire(getRecordTypes)
+    recordTypeOptionsInfo({ error, data }) {
+        if (data) {
+            console.log('This is the rec type Info: ', JSON.stringify(data));
+            this.recordTypeOptions = data;
+        } else if (error) {
+            console.log('Error in rec type fetch: ', JSON.stringify(error));
+        }
+    }
     @wire(getPicklistValues, { recordTypeId: '$recordTypeValue', fieldApiName: STATE_FIELD })
     statePicklistValueInfo({ error, data }) {
         if (data) {
@@ -55,11 +72,5 @@ export default class LdsWireGetPiclistSample extends LightningElement {
     }
     handleCityChange(event) {
         console.log(event.detail.value);
-    }
-    get recordTypeOptions() {
-        return [
-            { label: 'East', value: '0124L000000ph4yQAA' }, //add your own Contact' recordtype Id
-            { label: 'West', value: '0124L000000ph53' }
-        ];
     }
 }
