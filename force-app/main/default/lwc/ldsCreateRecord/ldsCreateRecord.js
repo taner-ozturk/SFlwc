@@ -43,7 +43,7 @@ export default class LdsCreateRecord extends LightningElement {
         createRecord(oppRecord)
             .then(opportunityRecord => {
                 console.log('opportunityRecord: ', JSON.stringify(opportunityRecord));
-                alert('Opportunity created with Id: ', opportunityRecord.id);
+                alert('Opportunity created with Id: ' + opportunityRecord.id);
             })
             .catch(error => {
                 alert('Creation failed');
