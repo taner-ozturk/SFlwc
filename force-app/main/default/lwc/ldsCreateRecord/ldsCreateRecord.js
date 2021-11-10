@@ -1,11 +1,13 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
 import { createRecord } from 'lightning/uiRecordApi';
 import NAME_FIELD from '@salesforce/schema/Opportunity.Name';
 import STAGE_NAME from '@salesforce/schema/Opportunity.StageName';
 import CLOSE_DATE from '@salesforce/schema/Opportunity.CloseDate';
 import OPPORTUNITY_OBJECT from '@salesforce/schema/Opportunity';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
-export default class LdsCreateRecord extends LightningElement {
+export default class LdsCreateRecord extends NavigationMixin(LightningElement) {
     name;
     stageName;
     closeDate;
@@ -41,20 +43,7 @@ export default class LdsCreateRecord extends LightningElement {
         this.closeDate = event.detail.value;
     }
     handleCreateOpp(event) {
-        const allValidInputs = [
-            ...this.template.querySelectorAll('lightning-input'),
-        ].reduce((validSoFar, inputCmp) => {
-            inputCmp.reportValidity();
-            return validSoFar && inputCmp.checkValidity();
-        }, true);
-        const allValidPicklists = [
-            ...this.template.querySelectorAll('lightning-combobox'),
-        ].reduce((validSoFar, inputCmp) => {
-            inputCmp.reportValidity();
-            return validSoFar && inputCmp.checkValidity();
-        }, true);
-        if (!allValidInputs || !allValidPicklists) {
-            alert('Please fix the issues');
+        if (!this.validityCheck()) {
             return;
         }
         
@@ -67,12 +56,55 @@ export default class LdsCreateRecord extends LightningElement {
         const oppRecord = { apiName: OPPORTUNITY_OBJECT.objectApiName, fields };
         createRecord(oppRecord)
             .then(opportunityRecord => {
-                console.log('opportunityRecord: ', JSON.stringify(opportunityRecord));
-                alert('Opportunity created with Id: '+ opportunityRecord.id);
+                this.showNotification('SUCCESS', 'Opportunity created successfully','success');
+                this.navigateToRecordViewPage(opportunityRecord.id);
             })
             .catch(error => {
-                alert('Creation failed');
+                this.showNotification('ERROR', 'Opportunity creation failed','error');
                 console.log('Error: ', JSON.stringify(error));
             })
+    }
+    showNotification(title, message, variant) {
+        const evt = new ShowToastEvent({
+            title: title,
+            message: message,
+            variant: variant,
+        });
+        this.dispatchEvent(evt);
+    }
+    validityCheck() {
+        const allValidInputs = [
+            ...this.template.querySelectorAll('lightning-input'), //inputCmp = input[1]
+        ].reduce((validSoFar, inputCmp) => {
+            inputCmp.reportValidity();
+            return validSoFar && inputCmp.checkValidity();
+        }, true);
+        const allValidPicklists = [
+            ...this.template.querySelectorAll('lightning-combobox'),
+        ].reduce((validSoFar, inputCmp) => {
+            inputCmp.reportValidity();
+            return validSoFar && inputCmp.checkValidity();
+        }, true);
+        if (!allValidInputs || !allValidPicklists) {
+            alert('Please fix the issues');
+            return false;
+        }
+        return true;
+    }
+    navigateToRecordViewPage(recordId) {
+        // View a custom object record.
+        this[NavigationMixin.Navigate]({
+            type: 'standard__recordPage',
+            attributes: {
+                recordId: recordId,
+                actionName: 'view'
+            }
+        });
+    }
+    get isCreated() {
+        if (this.recordId) {
+            return true;
+        }
+        return false;
     }
 }

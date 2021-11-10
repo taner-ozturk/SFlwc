@@ -31,7 +31,15 @@
                 onchange={handleCloseDateChange}
             ></lightning-input>
             <br/>
-            <lightning-button variant="brand" label="Create Opportunity" title="createOpp" onclick={handleCreateOpp} class="sslds-var-m-left_x-small"></lightning-button>
+            <div class="slds-var-p-around_small">
+                <lightning-button 
+                    variant="brand" 
+                    label="Create Opportunity"
+                    title="createOpp"
+                    onclick={handleCreateOpp}
+                    class="slds-var-m-left_x-small"
+                ></lightning-button>
+            </div>
         </lightning-card>
     </div>
 </template>
