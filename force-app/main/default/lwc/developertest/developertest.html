@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Lightning Card" >
+              <lightning-button variant="brand" label="brand" title="test button" slot="actions"></lightning-button> 
+              <button class="slds-button slds-button_brand slds-align_absolute-center" >Lightning Design System Button</button>
+              <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+              <p slot="footer">Card Footer</p>
+
+              <div class={flexipageRegionWidth}>
+                  {flexipageRegionWidth}   </br>
+                  <lightning-button class={flexipageRegionWidth} variant="brand" label="Get Accounts" onclick={handleLoad}></lightning-button>
+              </div>
+
+              <template if:true={accounts}>
+                  <template for:each={accounts} for:item="acc"> 
+                      <p key={acc.id}>Name: {acc.Name}, Website:{acc.Website}</p>
+                  </template>
+              </template> 
+              <template if:true={error}>
+                  <p>Error retreiving the accounts</p>
+              </template>
+
+    </lightning-card>
+    
+</template>

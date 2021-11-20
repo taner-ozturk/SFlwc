@@ -1,0 +1,15 @@
+button {
+    border: 1px;
+}
+.slds-button{
+    justify-content: center;
+}
+lightning-button.LARGE {
+--sds-c-button-brand-color-background: blue;
+}
+lightning-button.MEDIUM {
+--sds-c-button-brand-color-background: green;
+}
+lightning-button.SMALL {
+--sds-c-button-brand-color-background: yellow;
+}
